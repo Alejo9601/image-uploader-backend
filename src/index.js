@@ -1,5 +1,12 @@
 const express = require("express");
 
+const fs = require("fs");
+const dir = "./uploads";
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
+
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,7 +25,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.static("uploads"));
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.post("/upload", upload.single("myFile"), (req, res) => {
   const file = req.file;
