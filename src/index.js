@@ -1,13 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const v1Router = require("./v1/routes/imagesRoutes");
+const createUploadsFolder = require("./services/createUploadsFolder");
 
-//will create an uploads folder
-const fs = require("fs");
-const dir = "./uploads";
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir);
-}
+createUploadsFolder();
 
 const app = express();
 app.use(cors());
