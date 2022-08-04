@@ -4,6 +4,6 @@ const imgController = require("../../controller/imagesController");
 
 router
   .post("/", imgController.upload, imgController.uploadImage)
-  .delete("/delete", imgController.deleteAllImages);
+  .delete("/", imgController.deleteAllImages);
 
 module.exports = router;
