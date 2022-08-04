@@ -16,12 +16,12 @@ const app = express();
 
 const cors = require("cors");
 app.use(cors());
+app.use(express.static("uploads"));
 
 const PORT = 3001;
 
 app.post("/upload", upload.single("myFile"), (req, res) => {
   const file = req.file;
-  console.log(file);
   res.send(file);
 });
 
