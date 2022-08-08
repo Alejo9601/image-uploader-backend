@@ -1,10 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const v1Router = require("./v1/routes/imagesRoutes");
-const createUploadsFolder = require("./utils/createUploadsFolder");
+require("./utils/createUploadsFolder");
 require("./database/connectDatabase");
-
-createUploadsFolder();
 
 const app = express();
 app.use(cors());
