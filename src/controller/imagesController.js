@@ -2,6 +2,7 @@ const services = require("../services/imageServices");
 
 const uploadImage = (req, res) => {
   const file = req.file;
+  services.createImage(file.originalname, file.mimetype);
   res.send(file);
 };
 
