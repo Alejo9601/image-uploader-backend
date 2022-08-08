@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const v1Router = require("./v1/routes/imagesRoutes");
-const createUploadsFolder = require("./services/createUploadsFolder");
+const createUploadsFolder = require("./utils/createUploadsFolder");
 
 createUploadsFolder();
 
