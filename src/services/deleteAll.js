@@ -1,4 +1,5 @@
 const fsP = require("fs").promises;
+const path = require("path");
 
 const deleteAll = async () => {
   const FOLDER_TO_REMOVE = "uploads";
@@ -13,7 +14,7 @@ const deleteAll = async () => {
     })
     .catch((err) => {
       console.error(
-        `Something wrong happened removing files of ${FOLDER_TO_REMOVE}`
+        `Something wrong happened removing files of ${FOLDER_TO_REMOVE} ${err}`
       );
     });
 };
