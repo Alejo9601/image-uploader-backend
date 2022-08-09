@@ -13,7 +13,9 @@ const upload = async (fileName, fileType) => {
       contentType: fileType,
     },
   });
-  return image.save();
+  return image
+    .save()
+    .catch((err) => console.log("An error ocurred uploading file"));
 };
 
 module.exports = upload;
