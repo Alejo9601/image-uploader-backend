@@ -1,17 +1,9 @@
-const fs = require("fs");
-const path = require("path");
 const Image = require("../models/imageSchema");
 
-const upload = async (fileName, fileType) => {
+const upload = async (file) => {
   const image = new Image({
-    name: fileName,
-    desc: "",
-    img: {
-      data: fs.readFileSync(
-        path.join(__dirname + "../../../uploads/" + fileName)
-      ),
-      contentType: fileType,
-    },
+    name: file.originalname,
+    url: file.path,
   });
   return image
     .save()
