@@ -1,25 +1,4 @@
 const fsP = require("fs").promises;
-const fs = require("fs");
-const path = require("path");
-const imgModel = require("../models/imageSchema");
-
-const createImage = (fileName, fileType) => {
-  var obj = {
-    name: fileName,
-    desc: "",
-    img: {
-      data: fs.readFileSync(
-        path.join(__dirname + "../../../uploads/" + fileName)
-      ),
-      contentType: fileType,
-    },
-  };
-  imgModel.create(obj, (err, item) => {
-    if (err) {
-      console.log(err);
-    }
-  });
-};
 
 const deleteAll = async () => {
   const FOLDER_TO_REMOVE = "uploads";
@@ -39,7 +18,4 @@ const deleteAll = async () => {
     });
 };
 
-module.exports = {
-  deleteAll,
-  createImage,
-};
+module.exports = deleteAll;

@@ -4,6 +4,7 @@ const imgController = require("../../controller/imagesController");
 const multer = require("../../middlewares/multer");
 
 router
+  .get("/", imgController.getImage)
   .post("/", multer.upload, imgController.uploadImage)
   .delete("/", imgController.deleteAllImages);
 
