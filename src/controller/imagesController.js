@@ -12,11 +12,6 @@ const uploadImage = (req, res) => {
   }
 };
 
-const deleteAllImages = (req, res) => {
-  services.deleteAll().then(res.status(204).end());
-};
-
 module.exports = {
   uploadImage,
-  deleteAllImages,
 };
