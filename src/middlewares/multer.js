@@ -1,13 +1,9 @@
 const multer = require("multer");
+const DatauriParser = require("datauri/parser");
+const path = require("path");
+const { parse } = require("path");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+const storage = multer.memoryStorage();
 
 const multerUploads = multer({
   storage: storage,
@@ -23,6 +19,14 @@ const multerUploads = multer({
       return cb(new Error("File should be JPG, JPEG or PNG"));
     }
   },
-});
+}).single("myFile");
 
-module.exports = multerUploads.single("myFile");
+const parser = new DatauriParser();
+
+const dataUri = (req) =>
+  parser.format(
+    path.extname(req.file.originalname).toString(),
+    req.file.buffer
+  );
+
+module.exports = { multerUploads, dataUri };
