@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const imgController = require("../../controller/imagesController");
-const multer = require("../../middlewares/multer");
+const multerUploads = require("../../middlewares/multer");
 
 router
-  .get("/:id", imgController.getImage)
-  .post("/", multer.upload, imgController.uploadImage)
+  .post("/", multerUploads, imgController.uploadImage)
   .delete("/", imgController.deleteAllImages);
 
 module.exports = router;

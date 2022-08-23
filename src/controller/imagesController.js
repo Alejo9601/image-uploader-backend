@@ -1,15 +1,16 @@
 const services = require("../services");
-
-const getImage = (req, res) => {
-  const id = String(req.params.id);
-  services.getImage(id).then((result) => {
-    res.send(result);
-  });
-};
+// const { dataUri } = require("../middlewares/multer");
 
 const uploadImage = (req, res) => {
-  const file = req.file;
-  services.upload(file).then((result) => res.status(200).send(result));
+  if (req.file) {
+    // const fileToUpload = dataUri(req).content;
+    // console.log(fileToUpload);
+    services
+      .upload(req.file)
+      .then((result) => res.status(200).send(result).end());
+  } else {
+    res.status(500).end();
+  }
 };
 
 const deleteAllImages = (req, res) => {
@@ -19,5 +20,4 @@ const deleteAllImages = (req, res) => {
 module.exports = {
   uploadImage,
   deleteAllImages,
-  getImage,
 };
