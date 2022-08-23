@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const v1Router = require("./v1/routes/imagesRoutes");
+const v1Router = require("./routes/v1/imagesRoutes");
 require("./utils/createUploadsFolder");
 require("./database/connectDatabase");
 const { cloudinaryConfig } = require("./middlewares/cloudinary");

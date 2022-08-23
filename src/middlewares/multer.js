@@ -9,6 +9,20 @@ const storage = multer.diskStorage({
   },
 });
 
-const multerUploads = multer({ storage }).single("myFile");
+const multerUploads = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error("File should be JPG, JPEG or PNG"));
+    }
+  },
+});
 
-module.exports = multerUploads;
+module.exports = multerUploads.single("myFile");
