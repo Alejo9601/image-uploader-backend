@@ -10,6 +10,7 @@ const upload = async (file) => {
         url: result.url,
       });
       image.save();
+      return result;
     })
     .catch((err) => console.log("An error ocurred uploading file"));
 };
